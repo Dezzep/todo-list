@@ -1,32 +1,29 @@
+export {createHtmlListUsingArray};
+const _pushToArray = (array, content) => {
+  array.push(content);
+} 
+
+const createHtmlListUsingArray = (arrayName, className, newContent) =>{
 
 
-const navList = [];                
-const addToNav = (documentID, navClass, navName) =>{
-
-  if(typeof documentID != 'string' || typeof navClass != 'string' || typeof navName != 'string'){
+  if(typeof arrayName != 'object' || typeof className != 'string' || typeof newContent != 'string'){
     throw 'Arguments must be strings!';
   }
-  //Nav list is global in this module
-  const _addToNavList = () => {
-    navList.push(navName);
-  } 
-  _addToNavList();
-  const id = document.getElementById(documentID);
-  const pushToNav = () => {
+  
+  _pushToArray(arrayName, newContent);
+  const _parent = document.body;
+  const _div = document.createElement('div');
+  const _pushListToDom = () => {
     const ul = document.createElement('ul');
-    const element = document.createElement('div');
-    element.appendChild(ul);
-    element.className = `${navClass}`
-    for(let i = 0; i<navList.length; i++){
+    _div.appendChild(ul);
+    _div.className = `${className}`
+    for(let i = 0; i<arrayName.length; i++){
       let li = document.createElement('li');
-      li.innerText = `${navList[i]}`;
-      li.id = `nav${i}`
+      li.innerText = `${arrayName[i]}`;
       ul.appendChild(li);
     };
     
-    return id.appendChild(element);
+    return _parent.appendChild(_div);
   };
-    pushToNav();
+    _pushListToDom();
 };
-
-export {addToNav};
