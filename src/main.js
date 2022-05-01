@@ -1,49 +1,57 @@
-const _pushToArray = (array, content) => {
-  array.push(content);
-} 
-const createCheckbox = (idName, appendTo) => {
-  
-  let checkBox = document.createElement("input");
-  checkBox.setAttribute("type", "checkbox");
-  checkBox.id = idName;
-  return appendTo.appendChild(checkBox);
-};
 
-const createLabel = (idName, displayText, appendTo) => {
-  
-  let label = document.createElement("label");
-  label.setAttribute("for", idName);
-  label.innerText = displayText;
-  
-  return appendTo.appendChild(label);
-};
+  export class CheckBoxCreate {
 
-const createCheckboxAndLabelUsingArrayToDom = (arrayName, className, newContent) => {
-  
-  _pushToArray(arrayName, newContent);
-  
-  for (let i = 0; i < arrayName.length; i++){
-    console.log('meep');
+   constructor (mainDiv) {
+    this.listElement = mainDiv;
+    this.textList = ['test','420','555'];
   }
+
+    static createBox (text) {
+      let checkBox = document.createElement("input");
+      checkBox.setAttribute("type", "checkbox");
+      checkBox.id = text;
+      return checkBox;
+    }
+
+    static createLabel (text) {
+      
+      let label = document.createElement("label");
+      label.setAttribute("for", text);
+      label.innerText = text;
+      return label;
+    }
+  update () {
+
+    while (this.listElement.firstChild) {
+      this.listElement.removeChild(this.listElement.firstChild);
+    }
+    for (const text of this.textList){
+      let div = document.createElement("div");
+      div.className = 'checkbox-container';
+      div.appendChild(CheckBoxCreate.createBox(text));
+      div.appendChild(CheckBoxCreate.createLabel(text));
+      this.listElement.appendChild(div);
+
   
-  const _parent = document.body;
-  const _div = document.createElement('div');
-  const _divparent = document.getElementById('main');
-  const _pushCheckboxAndLabelToDom = () => {
-
-    _div.className = className;
-
-    _div.appendChild(createCheckbox(newContent, _div ));
-    _div.appendChild(createLabel(newContent, newContent, _div));
-
-    _divparent.appendChild(_div);
-  };
-  _parent.append(_divparent);
-  _pushCheckboxAndLabelToDom();
+      
+  }}
+  pushToArray(newElement){
+    this.textList.push(newElement);
+    this.update()
+  } 
+  removeElement(element){
+    let indexOfEl = this.textList.indexOf(element)
+    this.textList.splice(indexOfEl, 2);
+    this.update()
+  }
 };
 
-// next step, deal with duplicate Id's!
 
 
 
-export{createCheckboxAndLabelUsingArrayToDom};
+
+
+
+
+
+

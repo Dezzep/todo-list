@@ -1,18 +1,18 @@
 import "./styles/styles.scss"
 import {createHtmlListUsingArray} from './nav';
-import { createCheckboxAndLabelUsingArrayToDom } from "./main";
+import {CheckBoxCreate} from './main';
+// import {checkBoxCreate} from "./main";
 
 
-const testArray = ['DOGS', 'CATS', 'DOGS3'];
+const testArray = ['salad','balad','swalad'];
 
 
 const duck = createHtmlListUsingArray( testArray,'nav', 'DUCKS');
-const luck = createHtmlListUsingArray( testArray,'nav',  'SHUCKS!')
 
 
-const x = [];
-createCheckboxAndLabelUsingArrayToDom(x, 'checkbox-container', 'bilbo');
-createCheckboxAndLabelUsingArrayToDom(x, 'checkbox-container', 'bilbo');
-createCheckboxAndLabelUsingArrayToDom(x, 'checkbox-container', 'bilo');
+
+const checkboxes = document.getElementById("main");
 
 
+
+window.xx = new CheckBoxCreate(checkboxes);
