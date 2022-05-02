@@ -1,14 +1,13 @@
 import "./styles/styles.scss"
 import {createHtmlListUsingArray} from './nav';
-import {CheckBoxCreate} from './main';
+import {CheckBoxCreate, addToDo} from './main';
 // import {checkBoxCreate} from "./main";
 
 
-const testArray = ['salad','balad','swalad'];
+const navBarList = ['salad','balad','swalad'];
 
 
-const duck = createHtmlListUsingArray( testArray,'nav', 'DUCKS');
-
+createHtmlListUsingArray( navBarList,'nav', 'DUCKS');
 
 
 const checkboxes = document.getElementById("main");
@@ -16,3 +15,5 @@ const checkboxes = document.getElementById("main");
 
 
 window.xx = new CheckBoxCreate(checkboxes);
+
+addToDo(xx);

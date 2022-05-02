@@ -71,11 +71,24 @@ body{
   gap:1em;
 
 }
+#add-to-do{
+  width: 20px;
+  height:20px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $rare;
+}
 
   .checkbox-container{
    display:flex;
    align-items:center;
-
+   
+    p{
+      align-self: flex-end;
+      justify-self: flex-end;
+      margin-left:auto;
+    }
 
     label{
       cursor: pointer;
