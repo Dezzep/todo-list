@@ -6,7 +6,7 @@
     this.textList = [];
   }
 
-    static createBox (text, id) {
+    static createBox (id) {
       let checkBox = document.createElement("input");
       checkBox.setAttribute("type", "checkbox");
       checkBox.id = id;
@@ -25,6 +25,7 @@
       para.innerText = "2/4/2022";
       return para
     }
+    
   update () {
 
     while (this.listElement.firstChild) {
@@ -34,12 +35,13 @@
 
       let div = document.createElement("div");
       div.className = 'checkbox-container';
-      div.append(CheckBoxCreate.createBox(this.textList[i], i), CheckBoxCreate.createLabel(this.textList[i], i),CheckBoxCreate.createInfoSection() );
+      div.append(CheckBoxCreate.createBox(i), CheckBoxCreate.createLabel(this.textList[i], i),CheckBoxCreate.createInfoSection() );
       this.listElement.appendChild(div);
 
   
       
   }}
+  
   pushToArray(newElement){
     this.textList.push(newElement);
     this.update()
@@ -49,6 +51,7 @@
     this.textList.splice(indexOfEl, 1);
     this.update()
   }
+  
 };
 
 

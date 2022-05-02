@@ -12,8 +12,14 @@ createHtmlListUsingArray( navBarList,'nav', 'DUCKS');
 
 const checkboxes = document.getElementById("main");
 
+const trackProjectNumber = []
+const trackProjectNumber2 = ['soup'];
 
 
-window.xx = new CheckBoxCreate(checkboxes);
 
-addToDo(xx);
+for (let i = 0; i < navBarList.length; i++){
+  trackProjectNumber.push('project' + i);
+  window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
+}
+
+ addToDo(project0);
