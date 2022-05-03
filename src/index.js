@@ -1,12 +1,11 @@
 import "./styles/styles.scss"
 import {createHtmlListUsingArray} from './nav';
-import {CheckBoxCreate, addToDo} from './main';
+import {CheckBoxCreate, } from './main';
 // import {checkBoxCreate} from "./main";
-const addButton = document.querySelector('#add-to-do');
 
 
 const navBarList = ['salad','balad','swalad'];
-let selectedProject;
+let selectedProject = 'project0'
 
 
 createHtmlListUsingArray( navBarList,'nav', 'DUCKS');
@@ -21,7 +20,9 @@ for (let i = 0; i < navBarList.length; i++){
   window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
 }
 
- 
+window[trackProjectNumber[0]].update();
+selectedProject = window[trackProjectNumber[0]] 
+console.log(selectedProject);
 
 
  const selectNavBar = () => {
@@ -57,3 +58,23 @@ const testThis = (select) => {
 
 selectNavBar(); 
 testThis(selectedProject);
+
+const appendFormInputToDom = () => {
+  
+  const addForm = document.forms["todo-form"];
+  addForm.addEventListener("submit", function(e){
+    
+    e.preventDefault();
+    let todoValue = document.getElementById("task").value;
+    
+    selectedProject.pushToArray(todoValue);
+    selectedProject.update();
+    
+    
+    addForm.style.display="none";
+    addForm.style.display="block"; 
+    addForm.reset();
+  });
+
+};
+appendFormInputToDom();

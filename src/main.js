@@ -57,8 +57,10 @@
     this.textList.splice(indexOfEl, 1);
     this.update()
   }
-  
 };
+
+
+
 
 
 
