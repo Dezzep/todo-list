@@ -1,5 +1,8 @@
 export {createHtmlListUsingArray};
 
+
+
+
 const _pushToArray = (array, content) => {
   array.push(content);
 } 
@@ -27,9 +30,14 @@ const createHtmlListUsingArray = (arrayName, className, newContent) =>{
     for(let i = 0; i<arrayName.length; i++){
       let li = document.createElement('li');
       li.innerText = `${arrayName[i]}`;
+      li.id = 'project' + i;
+      li.className = 'nav-options';
+      
       ul.appendChild(li);
     };
     return _parent.appendChild(_div);
   };
     _pushListToDom();
+
 };
+

@@ -23,7 +23,13 @@
     static createInfoSection (){
       let para = document.createElement("p");
       para.innerText = "2/4/2022";
-      return para
+      return para;
+    }
+    static createButton(){
+      let button = document.createElement("button");
+      button.innerText = "Add New To Do";
+      button.id = "add-to-do";
+      return button;
     }
     
   update () {
@@ -40,7 +46,7 @@
 
   
       
-  }}
+  } this.listElement.appendChild(CheckBoxCreate.createButton())}
   
   pushToArray(newElement){
     this.textList.push(newElement);
@@ -54,16 +60,6 @@
   
 };
 
-
-const addToDo = (classToAddElementTo) => {
-  const addButton = document.querySelector('#add-to-do');
-  addButton.addEventListener('click', function(){
-    
-    classToAddElementTo.pushToArray('taco');
-  } )
-}
-
-export{addToDo};
 
 
 
