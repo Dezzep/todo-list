@@ -5,6 +5,7 @@
     this.listElement = mainDiv;
     this.textList = [];
     this.colorList = []
+
     //add a color in the constructor. That matches textList in indexes.
   }
 
@@ -33,7 +34,16 @@
       button.id = "add-to-do";
       return button;
     }
-    
+    displayFormButton(){
+
+      const addForm = document.forms["todo-form"];
+      const formsContainer = document.getElementById('forms-container');
+      const addButton = document.getElementById('add-to-do');
+      addButton.addEventListener('click', function(){
+        addForm.style.display = '';
+        formsContainer.style.display = '';
+      });
+    }  
   
   
   update () {
@@ -48,10 +58,11 @@
       div.append(CheckBoxCreate.createBox(i), CheckBoxCreate.createLabel(this.textList[i], i),CheckBoxCreate.createInfoSection() );
       div.style.background = this.colorList[i];
       this.listElement.appendChild(div);
-
   
       
-  } this.listElement.appendChild(CheckBoxCreate.createButton())}
+  } this.listElement.appendChild(CheckBoxCreate.createButton())
+  this.displayFormButton();
+}
   
   pushToArray(newElement, color){
     this.textList.push(newElement);

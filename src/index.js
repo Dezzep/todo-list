@@ -3,8 +3,7 @@ import {createHtmlListUsingArray} from './nav';
 import {CheckBoxCreate, } from './main';
 // import {checkBoxCreate} from "./main";
 
-const addForm = document.forms["todo-form"];
-const formsContainer = document.getElementById('forms-container');
+
 const navBarList = ['salad','balad','swalad'];
 let selectedProject = 'project0'
 
@@ -37,23 +36,25 @@ selectedProject = window[trackProjectNumber[0]]
 };
 selectNavBar(); 
 // >-----------DisplayFormButton-------------
-const displayFormButton = () => {
+const displayFormButton = (select) => {
 
   
-  const addButton = document.getElementById('add-to-do');
+  const addButton = document.querySelector('#add-to-do');
   addButton.addEventListener('click', function(){
-    addForm.style.display = '';
-    formsContainer.style.display = '';
-    console.log('truu');
+    
 
   });
 }
 
 //--------------DisplayFormButton---------------<
  
+displayFormButton(selectedProject);
 
-
-const appendFormInputToDom = () => {  
+const appendFormInputToDom = () => {
+  
+  const addForm = document.forms["todo-form"];
+  const formsContainer = document.getElementById('forms-container');
+  
   //-- urgency buttons start --
   const urgencyButtons = document.getElementsByClassName('urgencies')
   let selectedUrgency = urgencyButtons[3]; // <-- sets to selected to default
@@ -101,5 +102,4 @@ const appendFormInputToDom = () => {
 
 };
 appendFormInputToDom();
-displayFormButton();
 
