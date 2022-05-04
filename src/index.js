@@ -3,7 +3,8 @@ import {createHtmlListUsingArray} from './nav';
 import {CheckBoxCreate, } from './main';
 // import {checkBoxCreate} from "./main";
 
-
+const addForm = document.forms["todo-form"];
+const formsContainer = document.getElementById('forms-container');
 const navBarList = ['salad','balad','swalad'];
 let selectedProject = 'project0'
 
@@ -34,23 +35,25 @@ selectedProject = window[trackProjectNumber[0]]
   }
   
 };
-
-const testThis = (select) => {
+selectNavBar(); 
+// >-----------DisplayFormButton-------------
+const displayFormButton = () => {
 
   
-  const addButton = document.querySelector('#add-to-do');
+  const addButton = document.getElementById('add-to-do');
   addButton.addEventListener('click', function(){
-    return select.pushToArray('taco');
+    addForm.style.display = '';
+    formsContainer.style.display = '';
+    console.log('truu');
 
   });
 }
- selectNavBar(); 
-testThis(selectedProject);
 
-const appendFormInputToDom = () => {
-  
-  const addForm = document.forms["todo-form"];
-  
+//--------------DisplayFormButton---------------<
+ 
+
+
+const appendFormInputToDom = () => {  
   //-- urgency buttons start --
   const urgencyButtons = document.getElementsByClassName('urgencies')
   let selectedUrgency = urgencyButtons[3]; // <-- sets to selected to default
@@ -64,28 +67,39 @@ const appendFormInputToDom = () => {
       selectedUrgency = urgencyButtons[i];
       selectedUrgency.style.border = "black 3px solid"
       selectedUrgency.style.margin = '-3px';
-
-      
-
-
     });
   }
+  
   
   // -- urgency buttons end --
   addForm.addEventListener("submit", function(e){
     
     e.preventDefault();
     let todoValue = document.getElementById("task").value;
-    
-    selectedProject.pushToArray(todoValue);
+    let urgencyColor;
+    console.log(selectedUrgency.id);      
+    if(selectedUrgency.id === 'important-urgent'){
+      urgencyColor = '#F9F871';
+    }
+    else if(selectedUrgency.id === 'important'){
+      urgencyColor = '#88F9BA';
+    }
+    else if(selectedUrgency.id === 'urgent'){
+      urgencyColor = '#C65F95';
+    }
+    else{
+      urgencyColor = '#96AFB8';
+    }
+    selectedProject.pushToArray(todoValue, urgencyColor);
     selectedProject.update();
     
     
     addForm.style.display="none";
-    addForm.style.display="block"; 
+    formsContainer.style.display ="none";
     addForm.reset();
   });
 
 };
 appendFormInputToDom();
+displayFormButton();
 
