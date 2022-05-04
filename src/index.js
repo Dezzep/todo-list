@@ -53,10 +53,21 @@ const appendFormInputToDom = () => {
   
   //-- urgency buttons start --
   const urgencyButtons = document.getElementsByClassName('urgencies')
+  let selectedUrgency = urgencyButtons[3]; // <-- sets to selected to default
+  selectedUrgency.style.border = "black 3px solid"; //<-- need to change margin to match border below
+  selectedUrgency.style.margin = "-3px"; //-3px margin stops elements from moving when clicked.
   for (let i = 0; i < urgencyButtons.length; i++){
     
     urgencyButtons[i].addEventListener('click', function(){
-      console.log('works');
+      selectedUrgency.style.border = 'none'
+      selectedUrgency.style.margin = "auto";
+      selectedUrgency = urgencyButtons[i];
+      selectedUrgency.style.border = "black 3px solid"
+      selectedUrgency.style.margin = '-3px';
+
+      
+
+
     });
   }
   
