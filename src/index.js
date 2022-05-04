@@ -10,9 +10,7 @@ let selectedProject = 'project0'
 
 createHtmlListUsingArray( navBarList,'nav', 'DUCKS');
 
-
 const checkboxes = document.getElementById("main");
-
 const trackProjectNumber = [] //for every nav item -- add one to array
 
 for (let i = 0; i < navBarList.length; i++){
@@ -22,8 +20,6 @@ for (let i = 0; i < navBarList.length; i++){
 
 window[trackProjectNumber[0]].update();
 selectedProject = window[trackProjectNumber[0]] 
-console.log(selectedProject);
-
 
  const selectNavBar = () => {
   const items = document.getElementsByClassName('nav-options');
@@ -33,10 +29,6 @@ console.log(selectedProject);
       let currentSelected = window[trackProjectNumber[i]]
       currentSelected.update();
       selectedProject = currentSelected;
-      testThis(selectedProject);
-      
-      
-
     });
     
   }
@@ -52,16 +44,23 @@ const testThis = (select) => {
 
   });
 }
- 
-
-
-
-selectNavBar(); 
+ selectNavBar(); 
 testThis(selectedProject);
 
 const appendFormInputToDom = () => {
   
   const addForm = document.forms["todo-form"];
+  
+  //-- urgency buttons start --
+  const urgencyButtons = document.getElementsByClassName('urgencies')
+  for (let i = 0; i < urgencyButtons.length; i++){
+    
+    urgencyButtons[i].addEventListener('click', function(){
+      console.log('works');
+    });
+  }
+  
+  // -- urgency buttons end --
   addForm.addEventListener("submit", function(e){
     
     e.preventDefault();
@@ -78,3 +77,4 @@ const appendFormInputToDom = () => {
 
 };
 appendFormInputToDom();
+

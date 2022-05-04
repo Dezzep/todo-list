@@ -5,6 +5,10 @@ $rare: #62C1DD;
 $flare: #D8ECE8
 ;
 $pop: #F1B770;
+$default: #96AFB8;
+$important-urgent: #F9F871;
+$important: #88F9BA;
+$urgent: #C65F95;
 
 *{
   padding: 0;
@@ -27,23 +31,6 @@ body{
   "nav main"
   "nav main";
 }
-
-// #content{
-//   height: 100vh;
-//   background-color: $flare;
-//   display: grid;
-//   grid-template-columns: 1fr 5fr;
-//   grid-template-rows: 1fr 20fr;
-//   grid-template-areas: 
-//   "header header"
-//   "nav main"
-//   "nav main"
-//   "nav main"
-//   "nav main"
-//   "nav main"
-//   "nav main"
-//   "nav main";
-// }
 
 .nav{
   background-color: $pop;
@@ -141,8 +128,60 @@ body{
   left:0;
   right:0;
   top:35%;
-  width:10rem;
+  width:20rem;
   padding:2rem;
 
-  background-color: #FF9671;
+  background-color: $rare;
+
+
+  .urgencies-container{
+    display:flex;
+    gap:.7em;
+    margin-top:2em;
+    justify-content: space-evenly;
+    align-items: center;
+
+  }
+  #important-urgent{
+    background-color:$important-urgent;
+    padding:0.3em;
+    
+    &:hover{
+      background-color: darken($important-urgent, 20%);
+      cursor: pointer;
+      transform:scale(1.05)
+      
+    }
+  }
+  #important{
+    background-color: $important;
+    padding:0.3em;
+    
+    &:hover{
+      background-color: darken($important, 20%);
+      cursor:pointer;
+      transform:scale(1.05)
+    }
+  }
+  #urgent{
+    background-color: $urgent;
+    padding:0.3em;
+    
+    &:hover{
+      background-color: darken($urgent, 20%);
+      cursor:pointer;
+      transform:scale(1.05)
+    
+    }
+  }
+  #default{ 
+    background-color:$default;
+    padding:0.3em;
+    
+    &:hover{
+      background-color: darken($default, 20%);
+      cursor:pointer;
+      transform:scale(1.05)
+      }
+  }
 }
