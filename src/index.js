@@ -35,20 +35,22 @@ selectedProject = window[trackProjectNumber[0]]
   
 };
 selectNavBar(); 
-// >-----------DisplayFormButton-------------
-const displayFormButton = (select) => {
+ // >-----------DisplayFormButton------------- added for redundancy, also in main.js
+const displayFormButton = () => {
 
   
-  const addButton = document.querySelector('#add-to-do');
+  const addForm = document.forms["todo-form"];
+  const formsContainer = document.getElementById('forms-container');
+  const addButton = document.getElementById('add-to-do');
   addButton.addEventListener('click', function(){
-    
-
+    addForm.style.display = '';
+    formsContainer.style.display = '';
   });
 }
 
 //--------------DisplayFormButton---------------<
  
-displayFormButton(selectedProject);
+displayFormButton();
 
 const appendFormInputToDom = () => {
   
