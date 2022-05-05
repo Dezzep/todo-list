@@ -1,22 +1,24 @@
 import "./styles/styles.scss"
-import {createHtmlListUsingArray} from './nav';
+import {createHtmlListUsingArray, navBarList} from './nav';
 import {CheckBoxCreate, } from './main';
 // import {checkBoxCreate} from "./main";
 
+const _parent = document.body;
 
-const navBarList = ['salad','balad','swalad'];
 let selectedProject = 'project0'
 
 
-createHtmlListUsingArray( navBarList,'nav', 'DUCKS');
+createHtmlListUsingArray('DUCKS');
 
 const checkboxes = document.getElementById("main");
 const trackProjectNumber = [] //for every nav item -- add one to array
+
 
 for (let i = 0; i < navBarList.length; i++){
   trackProjectNumber.push('project' + i);
   window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
 }
+
 
 window[trackProjectNumber[0]].update();
 selectedProject = window[trackProjectNumber[0]] 
@@ -105,3 +107,56 @@ const appendFormInputToDom = () => {
 };
 appendFormInputToDom();
 
+const newProjectCreate = () => {
+  const form = document.createElement("form");
+  const div = document.createElement("div");
+  const label = document.createElement("label");
+  const input = document.createElement("input");
+  
+  form.id = "project-creation";
+  label.htmlFor = "project-create";
+  label.innerText = "New Project Name:";
+  label.id = "project-create";
+  input.type = "text";
+  div.className = "project-create-forum"
+
+  div.append(label, input);
+  form.appendChild(div);
+  _parent.appendChild(form);
+  
+  form.addEventListener("submit", function(e){
+  
+ 
+    e.preventDefault();
+    projectFormSubmit(input,form);
+
+  });
+}
+const projectFormSubmit = (input, form) => {
+  createHtmlListUsingArray(input.value);
+  
+  newProjectButtonPressed();
+  form.remove();
+  
+    selectNavBar();
+    for (let i = 0; i < navBarList.length; i++){
+      if (i === navBarList.length -1){
+        trackProjectNumber.push('project' + i);
+        window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
+      }
+      
+  }
+}
+
+const newProjectButtonPressed = () => {
+  const button = document.getElementById("new-project");
+  button.addEventListener('click', function() {
+    const addForm = document.forms["todo-form"];
+    const formsContainer = document.getElementById('forms-container');
+
+    addForm.style.display ='none';
+    formsContainer.style.display = 'none';
+    newProjectCreate();
+  });
+}
+newProjectButtonPressed();
