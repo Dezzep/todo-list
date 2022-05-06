@@ -35,6 +35,7 @@
       button.id = "add-to-do";
       return button;
     }
+    
     displayFormButton(){
 
       const addForm = document.forms["todo-form"];
@@ -48,7 +49,6 @@
   
   
   update () {
-
     while (this.listElement.firstChild) {
       this.listElement.removeChild(this.listElement.firstChild);
     }
@@ -60,32 +60,43 @@
       div.style.background = this.colorList[i];
       this.listElement.appendChild(div);
 
-  } this.listElement.appendChild(CheckBoxCreate.createButton())
+  } 
+ 
+  this.listElement.appendChild(CheckBoxCreate.createButton());
   this.displayFormButton();    
+  this.wasTheCheckBoxChecked();
+
+  
 };
   
   pushToArray(newElement, color){
     this.textList.push(newElement);
+    this.isChecked.push(false);
     
     if (color === undefined){
       color = '#96AFB8'
     };
     this.colorList.push(color);
-    this.update();
     
+    this.update();
   };
   
   removeElement(element){
     this.textList.splice(element, 1);
     this.colorList.splice(element, 1);
+    this.isChecked.splice(element, 1);
     this.update()
     // if removing multiple elements at a time I need to order them from greatest to least
     //so that when the array gets manipulated, they won't delete in an incorrect order.
     //similar to my library project.. -- store del array --
   };
-  checkCheckBoxStatus() {
-    
-      
+  wasTheCheckBoxChecked() {
+    for (let i = 0; i < this.isChecked.length; i++){
+      console.log(this.isChecked[i]);
+      if (this.isChecked[i]){
+        document.getElementById('cb'+i).click();
+      }
+    }
   }
 };
 

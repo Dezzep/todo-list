@@ -5,7 +5,7 @@ import {CheckBoxCreate, } from './main';
 
 const _parent = document.body;
 
-let selectedProject = 'project0'
+let selectedProject = 'project0';
 
 
 createHtmlListUsingArray('DUCKS');
@@ -82,8 +82,7 @@ const appendFormInputToDom = () => {
     
     e.preventDefault();
     let todoValue = document.getElementById("task").value;
-    let urgencyColor;
-    console.log(selectedUrgency.id);      
+    let urgencyColor;     
     if(selectedUrgency.id === 'important-urgent'){
       urgencyColor = '#F9F871';
     }
@@ -98,7 +97,9 @@ const appendFormInputToDom = () => {
     }
     selectedProject.pushToArray(todoValue, urgencyColor);
     selectedProject.update();
+    
     isCheckBoxChecked();
+    console.log(selectedProject.isChecked);
     
     
     addForm.style.display="none";
@@ -164,22 +165,22 @@ const newProjectButtonPressed = () => {
 newProjectButtonPressed();
 
 const isCheckBoxChecked = () => {
-for (let i = 0; i < selectedProject.textList.length; i++){
-  let checkbox = document.getElementById('cb' + i);
-  console.log(checkbox);
-  checkbox.addEventListener("click", function(){
-    let isChecked = checkbox.checked;
-    console.log(isChecked);
-  if(isChecked){
-    console.log("workiung");
-
-  }
-  else{
-    console.log("fff");
-  }
-  });
+  for (let i = 0; i < selectedProject.textList.length; i++){
+    let checkbox = document.getElementById('cb' + i);
     
-  
-    
+    checkbox.addEventListener("click", function(){
+      let isChecked = checkbox.checked;
+      
+    if(isChecked){
+      selectedProject.isChecked[i] = true;
+      console.log(`${selectedProject.textList[i]} = true`)
+    }
+    else{
+      selectedProject.isChecked[i] = false;
+      console.log(`${selectedProject.textList[i]} = false`)
+    }
+    });
+    };
   };
-};
+
+ 
