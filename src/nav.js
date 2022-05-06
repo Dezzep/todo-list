@@ -1,6 +1,5 @@
 export {createHtmlListUsingArray, navBarList};
-import { tryThis, selectNavBar } from ".";
-const navBarList = ['salad','balad','swalad'];
+const navBarList = ['Main ToDo','Dumb Stuff',];
 const _parent = document.body;
 
 

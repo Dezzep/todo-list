@@ -31,6 +31,7 @@ selectedProject = window[trackProjectNumber[0]]
       let currentSelected = window[trackProjectNumber[i]]
       currentSelected.update();
       selectedProject = currentSelected;
+      isCheckBoxChecked();
     });
     
   }
@@ -97,6 +98,7 @@ const appendFormInputToDom = () => {
     }
     selectedProject.pushToArray(todoValue, urgencyColor);
     selectedProject.update();
+    isCheckBoxChecked();
     
     
     addForm.style.display="none";
@@ -160,3 +162,24 @@ const newProjectButtonPressed = () => {
   });
 }
 newProjectButtonPressed();
+
+const isCheckBoxChecked = () => {
+for (let i = 0; i < selectedProject.textList.length; i++){
+  let checkbox = document.getElementById('cb' + i);
+  console.log(checkbox);
+  checkbox.addEventListener("click", function(){
+    let isChecked = checkbox.checked;
+    console.log(isChecked);
+  if(isChecked){
+    console.log("workiung");
+
+  }
+  else{
+    console.log("fff");
+  }
+  });
+    
+  
+    
+  };
+};

@@ -4,7 +4,8 @@
    constructor (mainDiv) {
     this.listElement = mainDiv;
     this.textList = [];
-    this.colorList = []
+    this.colorList = [];
+    this.isChecked = [];
 
     //add a color in the constructor. That matches textList in indexes.
   }
@@ -12,14 +13,14 @@
     static createBox (id) {
       let checkBox = document.createElement("input");
       checkBox.setAttribute("type", "checkbox");
-      checkBox.id = id;
+      checkBox.id = 'cb'+id;
       return checkBox;
     }
 
     static createLabel (text, id) {
       
       let label = document.createElement("label");
-      label.setAttribute("for", id);
+      label.setAttribute("for", 'cb'+id);
       label.innerText = text;
       return label;
     }
@@ -58,21 +59,22 @@
       div.append(CheckBoxCreate.createBox(i), CheckBoxCreate.createLabel(this.textList[i], i),CheckBoxCreate.createInfoSection() );
       div.style.background = this.colorList[i];
       this.listElement.appendChild(div);
-  
-      
+
   } this.listElement.appendChild(CheckBoxCreate.createButton())
-  this.displayFormButton();
-}
+  this.displayFormButton();    
+};
   
   pushToArray(newElement, color){
     this.textList.push(newElement);
     
     if (color === undefined){
       color = '#96AFB8'
-    }
+    };
     this.colorList.push(color);
     this.update();
-  } 
+    
+  };
+  
   removeElement(element){
     this.textList.splice(element, 1);
     this.colorList.splice(element, 1);
@@ -80,14 +82,10 @@
     // if removing multiple elements at a time I need to order them from greatest to least
     //so that when the array gets manipulated, they won't delete in an incorrect order.
     //similar to my library project.. -- store del array --
+  };
+  checkCheckBoxStatus() {
+    
+      
   }
 };
-
-
-
-
-
-
-
-
 

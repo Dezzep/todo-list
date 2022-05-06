@@ -2,7 +2,7 @@
 
 $bg: #fff;
 $rare: #62C1DD;
-$flare: #D8ECE8
+$flare: rgb(224, 203, 203)
 ;
 $pop: #F1B770;
 $default: #96AFB8;
@@ -41,6 +41,9 @@ body{
   flex-direction: column;
   gap:2em;
 
+  ul{
+    background-color: $pop;
+  }
   li{
     display:flex;
     flex-direction: column;
@@ -61,6 +64,12 @@ body{
   
 }
 
+.nav-options{
+  &:hover{
+    cursor: pointer;
+    background-color: $rare;
+  }
+}
 
 
 .main{
