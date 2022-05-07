@@ -1,3 +1,4 @@
+import {format, formatDistance, formatRelative, subDays} from 'date-fns';
 import "./styles/styles.scss"
 import {createHtmlListUsingArray, navBarList} from './nav';
 import {CheckBoxCreate, } from './main';
@@ -99,18 +100,23 @@ const appendFormInputToDom = () => {
     selectedProject.update();
     
     isCheckBoxChecked();
-    console.log(selectedProject.isChecked);
+
     
     
     addForm.style.display="none";
     formsContainer.style.display ="none";
     addForm.reset();
+    clickOnCheckboxDiv();
+
+    
   });
 
 };
 appendFormInputToDom();
 
 const newProjectCreate = () => {
+  if (canNewProjectBePressed){
+  canNewProjectBePressed = false;
   const form = document.createElement("form");
   const div = document.createElement("div");
   const label = document.createElement("label");
@@ -132,9 +138,11 @@ const newProjectCreate = () => {
  
     e.preventDefault();
     projectFormSubmit(input,form);
+    canNewProjectBePressed = true;
+
 
   });
-}
+}};
 const projectFormSubmit = (input, form) => {
   createHtmlListUsingArray(input.value);
   
@@ -151,7 +159,9 @@ const projectFormSubmit = (input, form) => {
   }
 }
 
+let canNewProjectBePressed = true;
 const newProjectButtonPressed = () => {
+  
   const button = document.getElementById("new-project");
   button.addEventListener('click', function() {
     const addForm = document.forms["todo-form"];
@@ -160,7 +170,9 @@ const newProjectButtonPressed = () => {
     addForm.style.display ='none';
     formsContainer.style.display = 'none';
     newProjectCreate();
+
   });
+
 }
 newProjectButtonPressed();
 
@@ -173,14 +185,30 @@ const isCheckBoxChecked = () => {
       
     if(isChecked){
       selectedProject.isChecked[i] = true;
-      console.log(`${selectedProject.textList[i]} = true`)
     }
     else{
       selectedProject.isChecked[i] = false;
-      console.log(`${selectedProject.textList[i]} = false`)
     }
     });
     };
   };
 
- 
+  const clickOnCheckboxDiv = () => {
+    let clickedDiv = document.getElementsByClassName('more-details');
+
+    for (let i = 0; i < selectedProject.dateAdded.length; i++){
+      for (let i = 0; i < clickedDiv.length; i ++){
+        console.log(clickedDiv[i]);                                                      
+      }
+      clickedDiv[i].addEventListener("click", function(){
+        console.log('blick');
+        //do stuff her to add more details and stuff
+        
+      });
+        
+      }
+    }
+    clickOnCheckboxDiv();
+    
+  
+

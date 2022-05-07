@@ -1,4 +1,6 @@
 
+  import {format, formatDistance, formatRelative, subDays} from 'date-fns';
+
   export class CheckBoxCreate {
 
    constructor (mainDiv) {
@@ -6,6 +8,7 @@
     this.textList = [];
     this.colorList = [];
     this.isChecked = [];
+    this.dateAdded = [];
 
     //add a color in the constructor. That matches textList in indexes.
   }
@@ -26,7 +29,13 @@
     }
     static createInfoSection (){
       let para = document.createElement("p");
-      para.innerText = "2/4/2022";
+      para.className = "more-details";
+      para.innerText = 'More Details';
+      return para;
+    }
+    static createDueDate (){
+      let para = document.createElement("p");
+      para.innerText = 'Due Date Here';
       return para;
     }
     static createButton(){
@@ -56,7 +65,11 @@
 
       let div = document.createElement("div");
       div.className = 'checkbox-container';
-      div.append(CheckBoxCreate.createBox(i), CheckBoxCreate.createLabel(this.textList[i], i),CheckBoxCreate.createInfoSection() );
+      div.id = 'checkdiv'+ i;
+      div.append(CheckBoxCreate.createBox(i), 
+        CheckBoxCreate.createLabel(this.textList[i], i),
+        CheckBoxCreate.createInfoSection(),
+        CheckBoxCreate.createDueDate());
       div.style.background = this.colorList[i];
       this.listElement.appendChild(div);
 
@@ -72,6 +85,9 @@
   pushToArray(newElement, color){
     this.textList.push(newElement);
     this.isChecked.push(false);
+    let currentTime = formatRelative(subDays(new Date(), 0), new Date());
+    this.dateAdded.push(currentTime);
+    console.log(this.dateAdded);
     
     if (color === undefined){
       color = '#96AFB8'
@@ -92,7 +108,6 @@
   };
   wasTheCheckBoxChecked() {
     for (let i = 0; i < this.isChecked.length; i++){
-      console.log(this.isChecked[i]);
       if (this.isChecked[i]){
         document.getElementById('cb'+i).click();
       }
