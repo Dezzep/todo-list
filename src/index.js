@@ -198,17 +198,40 @@ const isCheckBoxChecked = () => {
 
     for (let i = 0; i < selectedProject.dateAdded.length; i++){
       for (let i = 0; i < clickedDiv.length; i ++){
-        console.log(clickedDiv[i]);                                                      
       }
       clickedDiv[i].addEventListener("click", function(){
         console.log('blick');
-        //do stuff her to add more details and stuff
+        displayTaskInfo(true, 'blankForNow', selectedProject.dateAdded);
         
       });
         
       }
     }
     clickOnCheckboxDiv();
+
     
-  
+    const displayTaskInfo = (bool, content, date) => {
+      
+      const divId = document.getElementById("task-info"); 
+      const details = document.getElementById("details");
+      const dateCreated = document.getElementById("date-created")
+      
+      if (!bool){
+        
+        divId.style.display = 'none';
+        details.textContent = '';
+        dateCreated.textContent = '';
+      }
+      else{ 
+        
+        divId.style.display = '';
+        details.textContent = 'testing the content for now';
+        dateCreated.textContent = date;
+
+        
+      }
+
+      
+      
+    };
 
