@@ -45,6 +45,16 @@
       button.id = "add-to-do";
       return button;
     }
+    static hideExtraTaskInfo(){
+    
+      const divId = document.getElementById("task-info"); 
+      const details = document.getElementById("details");
+      const dateCreated = document.getElementById("date-created")
+        divId.style.display = 'none';
+        details.textContent = '';
+        dateCreated.textContent = '';
+    }
+    
     
     displayFormButton(){
 
@@ -52,6 +62,7 @@
       const formsContainer = document.getElementById('forms-container');
       const addButton = document.getElementById('add-to-do');
       addButton.addEventListener('click', function(){
+        CheckBoxCreate.hideExtraTaskInfo();
         addForm.style.display = '';
         formsContainer.style.display = '';
       });

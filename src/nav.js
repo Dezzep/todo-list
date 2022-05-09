@@ -1,5 +1,5 @@
 export {createHtmlListUsingArray, navBarList};
-const navBarList = ['Main ToDo','Dumb Stuff',];
+const navBarList = [];
 const _parent = document.body;
 
 

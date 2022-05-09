@@ -7,21 +7,19 @@ import {CheckBoxCreate, } from './main';
 const _parent = document.body;
 
 let selectedProject = 'project0';
-
-
-createHtmlListUsingArray('DUCKS');
-
+createHtmlListUsingArray('Stuff');
 const checkboxes = document.getElementById("main");
 const trackProjectNumber = [] //for every nav item -- add one to array
 
 
 for (let i = 0; i < navBarList.length; i++){
   trackProjectNumber.push('project' + i);
+  // creates dynamic variable names for new objects.
   window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
 }
 
 
-window[trackProjectNumber[0]].update();
+window[trackProjectNumber[0]].update(); //displays first project in main div
 selectedProject = window[trackProjectNumber[0]] 
 
  const selectNavBar = () => {
@@ -33,6 +31,9 @@ selectedProject = window[trackProjectNumber[0]]
       currentSelected.update();
       selectedProject = currentSelected;
       isCheckBoxChecked();
+      hideExtraTaskInfo();
+      clickOnCheckboxDiv();
+
     });
     
   }
@@ -47,8 +48,11 @@ const displayFormButton = () => {
   const formsContainer = document.getElementById('forms-container');
   const addButton = document.getElementById('add-to-do');
   addButton.addEventListener('click', function(){
+       
+    console.log('y');
     addForm.style.display = '';
     formsContainer.style.display = '';
+    
   });
 }
 
@@ -117,6 +121,7 @@ appendFormInputToDom();
 const newProjectCreate = () => {
   if (canNewProjectBePressed){
   canNewProjectBePressed = false;
+  hideExtraTaskInfo();
   const form = document.createElement("form");
   const div = document.createElement("div");
   const label = document.createElement("label");
@@ -200,8 +205,7 @@ const isCheckBoxChecked = () => {
       for (let i = 0; i < clickedDiv.length; i ++){
       }
       clickedDiv[i].addEventListener("click", function(){
-        console.log('blick');
-        displayTaskInfo(true, 'blankForNow', selectedProject.dateAdded);
+        displayExtraTaskInfo('blankForNow', selectedProject.dateAdded[i]);
         
       });
         
@@ -210,28 +214,33 @@ const isCheckBoxChecked = () => {
     clickOnCheckboxDiv();
 
     
-    const displayTaskInfo = (bool, content, date) => {
+    const displayExtraTaskInfo = (content, date) => {
       
       const divId = document.getElementById("task-info"); 
       const details = document.getElementById("details");
       const dateCreated = document.getElementById("date-created")
-      
-      if (!bool){
         
         divId.style.display = 'none';
         details.textContent = '';
         dateCreated.textContent = '';
-      }
-      else{ 
-        
+
         divId.style.display = '';
         details.textContent = 'testing the content for now';
         dateCreated.textContent = date;
+        canNewProjectBePressed = false;
 
         
-      }
-
-      
-      
     };
+
+    const hideExtraTaskInfo = () =>
+    {
+      const divId = document.getElementById("task-info"); 
+      const details = document.getElementById("details");
+      const dateCreated = document.getElementById("date-created")
+        divId.style.display = 'none';
+        details.textContent = '';
+        dateCreated.textContent = '';
+        canNewProjectBePressed = true;
+    }
+    hideExtraTaskInfo();
 

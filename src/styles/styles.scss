@@ -33,7 +33,7 @@ body{
 }
 
 .nav{
-  background-color: $pop;
+  background-color: darken($pop,20%);
   color: #393D3A;
 
   grid-area:nav;
@@ -42,7 +42,7 @@ body{
   gap:2em;
 
   ul{
-    background-color: $pop;
+    background-color: darken($pop,20%);
   }
   li{
     display:flex;
@@ -155,7 +155,7 @@ body{
   position: absolute;
   margin-left:auto;
   margin-right:auto;
-  left:0;
+  left:15%;
   right:0;
   top:35%;
   width:20rem;
@@ -230,7 +230,7 @@ body{
   position: absolute;
   margin-left:auto;
   margin-right:auto;
-  left:0;
+  left:15%;
   right:0;
   top:35%;
   width:20rem;
@@ -239,4 +239,23 @@ body{
   background-color: $rare;
   border-radius: 20px;
 
+}
+
+#task-info{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  position: absolute;
+  margin-left:auto;
+  margin-right:auto;
+  left:15%;
+  right:0;
+  top:25%;
+  width:20rem;
+  height:20rem;
+  padding:2rem;
+  border: 2px solid black;
+
+  background-color: $rare;
+  border-radius: 20px;
 }
