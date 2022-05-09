@@ -9,7 +9,7 @@
     this.colorList = [];
     this.isChecked = [];
     this.dateAdded = [];
-    this.details = [];
+    this.textDetails = [];
 
     //add a color in the constructor. That matches textList in indexes.
   }
@@ -99,6 +99,8 @@
     this.isChecked.push(false);
     let currentTime = formatRelative(subDays(new Date(), 0), new Date());
     this.dateAdded.push(currentTime);
+    this.textDetails.push('');
+    console.log(this.textDetails);
     
     if (color === undefined){
       color = '#96AFB8'

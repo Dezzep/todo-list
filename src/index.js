@@ -49,7 +49,6 @@ const displayFormButton = () => {
   const addButton = document.getElementById('add-to-do');
   addButton.addEventListener('click', function(){
        
-    console.log('y');
     addForm.style.display = '';
     formsContainer.style.display = '';
     
@@ -111,6 +110,7 @@ const appendFormInputToDom = () => {
     formsContainer.style.display ="none";
     addForm.reset();
     clickOnCheckboxDiv();
+    hideExtraTaskInfo();
 
     
   });
@@ -119,9 +119,12 @@ const appendFormInputToDom = () => {
 appendFormInputToDom();
 
 const newProjectCreate = () => {
+  
   if (canNewProjectBePressed){
-  canNewProjectBePressed = false;
   hideExtraTaskInfo();
+  canNewProjectBePressed = false;
+
+
   const form = document.createElement("form");
   const div = document.createElement("div");
   const label = document.createElement("label");
@@ -132,7 +135,7 @@ const newProjectCreate = () => {
   label.innerText = "New Project Name:";
   label.id = "project-create";
   input.type = "text";
-  div.className = "project-create-forum"
+  div.className = "project-create-form"
 
   div.append(label, input);
   form.appendChild(div);
@@ -197,7 +200,7 @@ const isCheckBoxChecked = () => {
     });
     };
   };
-
+  let rememberLastClickedCheckBox;
   const clickOnCheckboxDiv = () => {
     let clickedDiv = document.getElementsByClassName('more-details');
 
@@ -205,7 +208,9 @@ const isCheckBoxChecked = () => {
       for (let i = 0; i < clickedDiv.length; i ++){
       }
       clickedDiv[i].addEventListener("click", function(){
-        displayExtraTaskInfo('blankForNow', selectedProject.dateAdded[i]);
+        hideExtraTaskInfo();
+        displayExtraTaskInfo(selectedProject.textDetails[i], selectedProject.dateAdded[i]);
+        rememberLastClickedCheckBox = i;
         
       });
         
@@ -221,11 +226,11 @@ const isCheckBoxChecked = () => {
       const dateCreated = document.getElementById("date-created")
         
         divId.style.display = 'none';
-        details.textContent = '';
+        details.value = '';
         dateCreated.textContent = '';
 
         divId.style.display = '';
-        details.textContent = 'testing the content for now';
+        details.value = content;
         dateCreated.textContent = date;
         canNewProjectBePressed = false;
 
@@ -244,3 +249,15 @@ const isCheckBoxChecked = () => {
     }
     hideExtraTaskInfo();
 
+const formMoreDetailsSubmit = () => {
+  
+  const form = document.getElementById("text-details")
+  const innerTextValue = document.getElementById("details");
+  form.addEventListener("submit", function(e){
+    
+    e.preventDefault();
+    selectedProject.textDetails[rememberLastClickedCheckBox] = innerTextValue.value;
+    hideExtraTaskInfo();
+  });
+}
+formMoreDetailsSubmit();
