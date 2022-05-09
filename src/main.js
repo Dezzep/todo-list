@@ -10,6 +10,7 @@
     this.isChecked = [];
     this.dateAdded = [];
     this.textDetails = [];
+    this.date = []
 
     //add a color in the constructor. That matches textList in indexes.
   }
@@ -93,13 +94,14 @@
   
 };
   
-  pushToArray(newElement, color){
+  pushToArray(newElement, color, date){
     this.textList.push(newElement);
     this.isChecked.push(false);
     let currentTime = formatRelative(subDays(new Date(), 0), new Date());
     this.dateAdded.push(currentTime);
     this.textDetails.push('');
-    console.log(this.textDetails);
+    this.date.push(date.value);
+    console.log(this.date);
     
     if (color === undefined){
       color = '#96AFB8'
@@ -113,6 +115,7 @@
     this.textList.splice(element, 1);
     this.colorList.splice(element, 1);
     this.isChecked.splice(element, 1);
+    this.date.splice(element, 1);
     this.update()
     // if removing multiple elements at a time I need to order them from greatest to least
     //so that when the array gets manipulated, they won't delete in an incorrect order.

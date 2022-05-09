@@ -83,9 +83,11 @@ const appendFormInputToDom = () => {
   
   // -- urgency buttons end --
   addForm.addEventListener("submit", function(e){
-    
+
     e.preventDefault();
     let todoValue = document.getElementById("task").value;
+    let dateValue = document.getElementById("date").value;
+    console.log(dateValue);
     let urgencyColor;     
     if(selectedUrgency.id === 'important-urgent'){
       urgencyColor = '#F9F871';
@@ -99,7 +101,7 @@ const appendFormInputToDom = () => {
     else{
       urgencyColor = '#96AFB8';
     }
-    selectedProject.pushToArray(todoValue, urgencyColor);
+    selectedProject.pushToArray(todoValue, urgencyColor, date);
     selectedProject.update();
     
     isCheckBoxChecked();
@@ -209,7 +211,7 @@ const isCheckBoxChecked = () => {
       }
       clickedDiv[i].addEventListener("click", function(){
         hideExtraTaskInfo();
-        displayExtraTaskInfo(selectedProject.textDetails[i], selectedProject.dateAdded[i]);
+        displayExtraTaskInfo(selectedProject.textDetails[i], selectedProject.dateAdded[i], selectedProject.date[i]);
         rememberLastClickedCheckBox = i;
         
       });
@@ -219,19 +221,25 @@ const isCheckBoxChecked = () => {
     clickOnCheckboxDiv();
 
     
-    const displayExtraTaskInfo = (content, date) => {
+    const displayExtraTaskInfo = (content, date, dueDate) => {
       
       const divId = document.getElementById("task-info"); 
       const details = document.getElementById("details");
-      const dateCreated = document.getElementById("date-created")
+      const dateCreated = document.getElementById("date-created");
+      const dateDue = document.getElementById("date-due");
         
         divId.style.display = 'none';
         details.value = '';
         dateCreated.textContent = '';
+        dateDue.textContent = '';
 
         divId.style.display = '';
         details.value = content;
         dateCreated.textContent = date;
+        
+        if(dueDate.length >=3){
+        dateDue.innerText = (`Due date: ${dueDate}`);}
+
         canNewProjectBePressed = false;
 
         

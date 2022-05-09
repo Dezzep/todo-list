@@ -148,7 +148,20 @@ body{
 .header{
   grid-area:header;
 }
+#todo-form{
+  display:flex;
+  flex-direction: column;
+  gap:20px;
 
+  #for-date{
+    max-width: 70%;
+    margin-top: 1em;
+    display:flex;
+    gap:1em;
+
+   
+  }
+}
 #forms-container{
   justify-content: center;
   align-items: center;
@@ -161,10 +174,22 @@ body{
   top:35%;
   width:20rem;
   padding:2rem;
-
   background-color: $rare;
   border-radius: 20px;
 
+  button{
+    margin-top:2em;
+    width:10em;
+    background-color: $pop;
+    padding:.5em;
+    margin-left: -10px;
+
+    
+    &:hover{
+      cursor: pointer;
+      background-color: darken($pop, 20%);
+    }
+  }
 
   .urgencies-container{
     display:flex;
