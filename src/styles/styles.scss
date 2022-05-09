@@ -194,6 +194,7 @@ body{
     
     
     
+    
     &:hover{
       background-color: darken($important-urgent, 20%);
     }
@@ -259,4 +260,33 @@ body{
 
   background-color: $rare;
   border-radius: 20px;
+}
+
+.more-details{
+  padding-left:0.5em;
+  padding-right:0.5em;
+
+  &:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .10);
+  
+  }
+}
+
+.created{
+  display:flex;
+  gap:.5em;
+}
+
+#text-details{
+  display:grid;
+  grid-template-rows:1fr 10fr 1fr 1fr;
+  gap:0.5em;
+
+ #details{
+   border-radius:12px;
+   border: 2px solid black;
+   resize:none;
+   padding:0.5em;
+ }
 }

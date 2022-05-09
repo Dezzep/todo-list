@@ -80,8 +80,7 @@
       div.id = 'checkdiv'+ i;
       div.append(CheckBoxCreate.createBox(i), 
         CheckBoxCreate.createLabel(this.textList[i], i),
-        CheckBoxCreate.createInfoSection(),
-        CheckBoxCreate.createDueDate());
+        CheckBoxCreate.createInfoSection());
       div.style.background = this.colorList[i];
       this.listElement.appendChild(div);
 
