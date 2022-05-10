@@ -1,4 +1,4 @@
-
+  import { clickOnCheckboxDiv } from '.';
   import {format, formatDistance, formatRelative, subDays} from 'date-fns';
 
   export class CheckBoxCreate {
@@ -100,6 +100,8 @@
   this.displayFormButton();    
   this.wasTheCheckBoxChecked();
 
+
+
   
 };
   
@@ -124,7 +126,11 @@
     this.colorList.splice(element, 1);
     this.isChecked.splice(element, 1);
     this.date.splice(element, 1);
+    this.dateAdded.splice(element, 1);
+    this.textDetails.splice(element, 1);
     this.update()
+
+
     // if removing multiple elements at a time I need to order them from greatest to least
     //so that when the array gets manipulated, they won't delete in an incorrect order.
     //similar to my library project.. -- store del array --
@@ -133,6 +139,7 @@
     for (let i = 0; i < this.isChecked.length; i++){
       if (this.isChecked[i]){
         document.getElementById('cb'+i).click();
+
       }
     }
   }

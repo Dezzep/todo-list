@@ -197,8 +197,7 @@ const isCheckBoxChecked = () => {
     let clickedDiv = document.getElementsByClassName('more-details');
 
     for (let i = 0; i < selectedProject.dateAdded.length; i++){
-      for (let i = 0; i < clickedDiv.length; i ++){
-      }
+      
       clickedDiv[i].addEventListener("click", function(){
         hideNewProjectForm();
         hideExtraTaskInfo();
@@ -241,7 +240,7 @@ const isCheckBoxChecked = () => {
       const details = document.getElementById("details");
       const dateCreated = document.getElementById("date-created")
         divId.style.display = 'none';
-        details.textContent = '';
+        details.value = '';
         dateCreated.textContent = '';
     }
     hideExtraTaskInfo();
@@ -277,3 +276,20 @@ const hideNewProjectForm = () => {
   }
   
 }
+
+
+
+const deleteButton = () => {
+  const dlt = document.getElementById('delete');
+
+  dlt.addEventListener("click", function(){
+    
+
+    selectedProject.removeElement(rememberLastClickedCheckBox);
+
+    clickOnCheckboxDiv();
+    hideExtraTaskInfo();
+  });
+
+}
+deleteButton();
