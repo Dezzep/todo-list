@@ -46,6 +46,13 @@
       button.id = "add-to-do";
       return button;
     }
+    static hideNewProject(){
+      const projectForm = document.getElementById('project-create-form');
+      if(projectForm != null){
+        projectForm.remove();
+      }
+      
+    }
     static hideExtraTaskInfo(){
     
       const divId = document.getElementById("task-info"); 
@@ -62,10 +69,12 @@
       const addForm = document.forms["todo-form"];
       const formsContainer = document.getElementById('forms-container');
       const addButton = document.getElementById('add-to-do');
+     
       addButton.addEventListener('click', function(){
+        CheckBoxCreate.hideNewProject();
         CheckBoxCreate.hideExtraTaskInfo();
         addForm.style.display = '';
-        formsContainer.style.display = '';
+        formsContainer.style.display = '';    
       });
     }  
   
@@ -101,7 +110,6 @@
     this.dateAdded.push(currentTime);
     this.textDetails.push('');
     this.date.push(date.value);
-    console.log(this.date);
     
     if (color === undefined){
       color = '#96AFB8'

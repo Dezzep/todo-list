@@ -48,7 +48,7 @@ const displayFormButton = () => {
   const formsContainer = document.getElementById('forms-container');
   const addButton = document.getElementById('add-to-do');
   addButton.addEventListener('click', function(){
-       
+    hideNewProjectForm();
     addForm.style.display = '';
     formsContainer.style.display = '';
     
@@ -62,7 +62,6 @@ displayFormButton();
 const appendFormInputToDom = () => {
   
   const addForm = document.forms["todo-form"];
-  const formsContainer = document.getElementById('forms-container');
   
   //-- urgency buttons start --
   const urgencyButtons = document.getElementsByClassName('urgencies')
@@ -108,9 +107,7 @@ const appendFormInputToDom = () => {
 
     
     
-    addForm.style.display="none";
-    formsContainer.style.display ="none";
-    addForm.reset();
+    hideNewTask();
     clickOnCheckboxDiv();
     hideExtraTaskInfo();
 
@@ -122,10 +119,9 @@ appendFormInputToDom();
 
 const newProjectCreate = () => {
   
-  if (canNewProjectBePressed){
+  hideNewTask();
   hideExtraTaskInfo();
-  canNewProjectBePressed = false;
-
+  hideNewProjectForm();
 
   const form = document.createElement("form");
   const div = document.createElement("div");
@@ -137,7 +133,7 @@ const newProjectCreate = () => {
   label.innerText = "New Project Name:";
   label.id = "project-create";
   input.type = "text";
-  div.className = "project-create-form"
+  div.id = "project-create-form"
 
   div.append(label, input);
   form.appendChild(div);
@@ -148,11 +144,10 @@ const newProjectCreate = () => {
  
     e.preventDefault();
     projectFormSubmit(input,form);
-    canNewProjectBePressed = true;
 
 
   });
-}};
+};
 const projectFormSubmit = (input, form) => {
   createHtmlListUsingArray(input.value);
   
@@ -169,16 +164,11 @@ const projectFormSubmit = (input, form) => {
   }
 }
 
-let canNewProjectBePressed = true;
 const newProjectButtonPressed = () => {
   
   const button = document.getElementById("new-project");
   button.addEventListener('click', function() {
-    const addForm = document.forms["todo-form"];
-    const formsContainer = document.getElementById('forms-container');
-
-    addForm.style.display ='none';
-    formsContainer.style.display = 'none';
+    hideNewTask();
     newProjectCreate();
 
   });
@@ -210,6 +200,7 @@ const isCheckBoxChecked = () => {
       for (let i = 0; i < clickedDiv.length; i ++){
       }
       clickedDiv[i].addEventListener("click", function(){
+        hideNewProjectForm();
         hideExtraTaskInfo();
         displayExtraTaskInfo(selectedProject.textDetails[i], selectedProject.dateAdded[i], selectedProject.date[i]);
         rememberLastClickedCheckBox = i;
@@ -240,7 +231,6 @@ const isCheckBoxChecked = () => {
         if(dueDate.length >=3){
         dateDue.innerText = (`Due date: ${dueDate}`);}
 
-        canNewProjectBePressed = false;
 
         
     };
@@ -253,7 +243,6 @@ const isCheckBoxChecked = () => {
         divId.style.display = 'none';
         details.textContent = '';
         dateCreated.textContent = '';
-        canNewProjectBePressed = true;
     }
     hideExtraTaskInfo();
 
@@ -269,3 +258,22 @@ const formMoreDetailsSubmit = () => {
   });
 }
 formMoreDetailsSubmit();
+
+const hideNewTask = () => {
+  const addForm = document.forms["todo-form"];
+  const formsContainer = document.getElementById('forms-container');
+  addForm.style.display = 'none';
+  formsContainer.style.display = 'none';
+  addForm.reset();
+
+  
+
+
+}
+const hideNewProjectForm = () => {
+  const form = document.getElementById('project-create-form');
+  if (form != null){
+    form.remove();
+  }
+  
+}
