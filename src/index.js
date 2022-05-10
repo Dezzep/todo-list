@@ -192,13 +192,16 @@ const isCheckBoxChecked = () => {
     });
     };
   };
+
   let rememberLastClickedCheckBox;
+  
   const clickOnCheckboxDiv = () => {
     let clickedDiv = document.getElementsByClassName('more-details');
 
     for (let i = 0; i < selectedProject.dateAdded.length; i++){
       
       clickedDiv[i].addEventListener("click", function(){
+        hideNewTask();
         hideNewProjectForm();
         hideExtraTaskInfo();
         displayExtraTaskInfo(selectedProject.textDetails[i], selectedProject.dateAdded[i], selectedProject.date[i]);
