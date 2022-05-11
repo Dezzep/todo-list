@@ -158,7 +158,9 @@ const newProjectCreate = () => {
   const div = document.createElement("div");
   const label = document.createElement("label");
   const input = document.createElement("input");
-  
+  const button = document.createElement("button");
+
+  button.textContent = "Submit";
   form.id = "project-creation";
   label.htmlFor = "project-create";
   label.innerText = "New Project Name:";
@@ -166,7 +168,7 @@ const newProjectCreate = () => {
   input.type = "text";
   div.id = "project-create-form"
 
-  div.append(label, input);
+  div.append(label, input, button);
   form.appendChild(div);
   _parent.appendChild(form);
   

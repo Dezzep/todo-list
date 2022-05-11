@@ -1,3 +1,5 @@
+$breakpoint-small: 768px;
+
 
 
 $bg: #fff;
@@ -15,6 +17,12 @@ $urgent: #C65F95;
   margin: 0;
 }
 
+button{
+  padding:0.5rem;
+  margin-left: auto;
+  margin-right:auto;
+}
+
 body{
   height: 100vh;
   background-color: $flare;
@@ -30,6 +38,15 @@ body{
   "nav main"
   "nav main"
   "nav main";
+
+  @media (max-width: $breakpoint-small) {
+    grid-template-columns: 5fr;
+    grid-template-rows: 1fr 3fr 20fr;
+    grid-template-areas:
+    "header header"
+    "nav nav"
+    "main main"
+  }
 }
 
 .nav{
@@ -174,6 +191,7 @@ body{
   position: absolute;
   margin-left:auto;
   margin-right:auto;
+
   left:15%;
   right:0;
   top:35%;
@@ -181,6 +199,13 @@ body{
   padding:2rem;
   background-color: $rare;
   border-radius: 20px;
+  @media (max-width: $breakpoint-small) {
+    left:0;
+    right:0;
+    
+    padding:1.5rem;
+
+  }
 
   button{
     margin-top:2em;
@@ -270,6 +295,13 @@ body{
 
   background-color: $rare;
   border-radius: 20px;
+  @media (max-width: $breakpoint-small) {
+    left:0;
+    right:0;
+    
+    padding:1.5rem;
+
+  }
 
 }
 
@@ -290,6 +322,13 @@ body{
 
   background-color: $rare;
   border-radius: 20px;
+  @media (max-width: $breakpoint-small) {
+    left:0;
+    right:0;
+    
+    padding:1.5rem;
+
+  }
 }
 
 .more-details{
