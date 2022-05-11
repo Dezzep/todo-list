@@ -189,7 +189,7 @@ const projectFormSubmit = (input, form) => {
     for (let i = 0; i < navBarList.length; i++){
       if (i === navBarList.length -1){
         trackProjectNumber.push('project' + i);
-        window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
+        window[trackProjectNumber[i]] = new CheckBoxCreate();
       }
       
   }
