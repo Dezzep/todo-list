@@ -49,7 +49,7 @@ body{
     flex-direction: column;
     gap:2em;
     justify-content: flex-start;
-    margin-left:1em;
+    
     margin-top:4em;
   }
   
@@ -65,9 +65,14 @@ body{
 }
 
 .nav-options{
+  background-color: darken($pop,10%);
+  padding:.2em;
+  padding-left:.6em;
+
+  font-size: 1.2rem;
   &:hover{
     cursor: pointer;
-    background-color: $rare;
+    background-color: lighten($pop, 10%);
   }
 }
 
