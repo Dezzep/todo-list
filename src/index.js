@@ -288,6 +288,8 @@ const formMoreDetailsSubmit = () => {
     e.preventDefault();
     selectedProject.textDetails[rememberLastClickedCheckBox] = innerTextValue.value;
     hideExtraTaskInfo();
+    saveData(objectNameSelect, selectedProject);
+
   });
 }
 formMoreDetailsSubmit();
@@ -320,6 +322,8 @@ const deleteButton = () => {
     
 
     selectedProject.removeElement(rememberLastClickedCheckBox);
+    saveData(objectNameSelect, selectedProject);
+
 
     clickOnCheckboxDiv();
     hideExtraTaskInfo();
