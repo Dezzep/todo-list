@@ -3,8 +3,28 @@ const navBarList = [];
 const _parent = document.body;
 
 
+const saveData = (key,obj) => {
+  localStorage.setItem(`${key}`, JSON.stringify(obj));
+  
+}
+
+//check local storage for array if its saved
+const isThereDataInTheArrayAlready = JSON.parse(localStorage.getItem("navBarArray"));
+
+
+
 const _pushToArray = (array, content) => {
-  array.push(content);
+  if(isThereDataInTheArrayAlready && array.length < isThereDataInTheArrayAlready.length){
+    
+    for (let i = 0; i < isThereDataInTheArrayAlready.length; i++){
+      array.push(isThereDataInTheArrayAlready[i])
+    }
+  }
+  else{
+  
+  array.push(content);}
+  if (array.length > 1){ //because the navbar always has one main project
+  saveData("navBarArray", array);}
 } 
 
 const createHtmlListUsingArray = (newContent) =>{

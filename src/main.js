@@ -3,15 +3,15 @@
 
   export class CheckBoxCreate {
 
-   constructor (mainDiv) {
-    this.listElement = mainDiv;
+   constructor (data) {
+    this.listElement = document.getElementById("main");
     this.textList = [];
     this.colorList = [];
     this.isChecked = [];
     this.dateAdded = [];
     this.textDetails = [];
     this.date = []
-
+    Object.assign(this,data);
     //add a color in the constructor. That matches textList in indexes.
   }
 
@@ -80,8 +80,9 @@
   
   
   update () {
-    while (this.listElement.firstChild) {
-      this.listElement.removeChild(this.listElement.firstChild);
+    let x = document.getElementById("main");
+    while (x.firstChild) {
+      x.removeChild(x.firstChild);
     }
     for (let i = 0; i < this.textList.length; i++){
 
@@ -92,11 +93,12 @@
         CheckBoxCreate.createLabel(this.textList[i], i),
         CheckBoxCreate.createInfoSection());
       div.style.background = this.colorList[i];
-      this.listElement.appendChild(div);
+      x.appendChild(div);
 
   } 
  
-  this.listElement.appendChild(CheckBoxCreate.createButton());
+  
+  x.appendChild(CheckBoxCreate.createButton());
   this.displayFormButton();    
   this.wasTheCheckBoxChecked();
 

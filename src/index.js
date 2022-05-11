@@ -1,26 +1,55 @@
 import {format, formatDistance, formatRelative, subDays} from 'date-fns';
 import "./styles/styles.scss"
-import {createHtmlListUsingArray, navBarList} from './nav';
+import {createHtmlListUsingArray, navBarList,} from './nav';
 import {CheckBoxCreate, } from './main';
 // import {checkBoxCreate} from "./main";
 
 const _parent = document.body;
 
+
+const saveData = (key,obj) => {
+  localStorage.setItem(`${key}`, JSON.stringify(obj));
+  
+}
+
+
+
 let selectedProject = 'project0';
+let objectNameSelect = 'getProject0';
 createHtmlListUsingArray('Stuff');
-const checkboxes = document.getElementById("main");
+
 const trackProjectNumber = [] //for every nav item -- add one to array
 
+
+
+let navBarLen = document.getElementsByClassName('nav-options');
+const arrayOfObjectNames = [];
+for (let i = 0; i < navBarLen.length; i++){
+  arrayOfObjectNames.push('getProject'+i);
+}
 
 for (let i = 0; i < navBarList.length; i++){
   trackProjectNumber.push('project' + i);
   // creates dynamic variable names for new objects.
-  window[trackProjectNumber[i]] = new CheckBoxCreate(checkboxes);
+  if (navBarList.length < i){
+  window[trackProjectNumber[i]] = new CheckBoxCreate();
+
+  
+   saveData('getProject'+i, window[trackProjectNumber[i]])}
+  else{
+    let parsedJSONdata = JSON.parse(localStorage.getItem('getProject'+i));
+    
+    window[trackProjectNumber[i]] = new CheckBoxCreate(parsedJSONdata);
+  } 
 }
 
 
 window[trackProjectNumber[0]].update(); //displays first project in main div
 selectedProject = window[trackProjectNumber[0]] 
+objectNameSelect = arrayOfObjectNames[0];
+console.log(objectNameSelect);
+
+
 
  const selectNavBar = () => {
   const items = document.getElementsByClassName('nav-options');
@@ -30,6 +59,7 @@ selectedProject = window[trackProjectNumber[0]]
       let currentSelected = window[trackProjectNumber[i]]
       currentSelected.update();
       selectedProject = currentSelected;
+      objectNameSelect = arrayOfObjectNames[i];
       isCheckBoxChecked();
       hideExtraTaskInfo();
       clickOnCheckboxDiv();
@@ -86,7 +116,7 @@ const appendFormInputToDom = () => {
     e.preventDefault();
     let todoValue = document.getElementById("task").value;
     let dateValue = document.getElementById("date").value;
-    console.log(dateValue);
+    
     let urgencyColor;     
     if(selectedUrgency.id === 'important-urgent'){
       urgencyColor = '#F9F871';
@@ -102,6 +132,7 @@ const appendFormInputToDom = () => {
     }
     selectedProject.pushToArray(todoValue, urgencyColor, date);
     selectedProject.update();
+    saveData(objectNameSelect, selectedProject);
     
     isCheckBoxChecked();
 
@@ -296,3 +327,4 @@ const deleteButton = () => {
 
 }
 deleteButton();
+
