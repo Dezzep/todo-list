@@ -333,4 +333,5 @@ const deleteButton = () => {
 
 }
 deleteButton();
+hideNewTask();
 
