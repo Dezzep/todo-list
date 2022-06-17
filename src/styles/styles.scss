@@ -1,11 +1,8 @@
 $breakpoint-small: 768px;
 
-
-
 $bg: #fff;
 $rare: #62C1DD;
-$flare: rgb(224, 203, 203)
-;
+$flare: rgb(224, 203, 203);
 $pop: #F1B770;
 $default: #96AFB8;
 $important-urgent: #F9F871;
@@ -30,7 +27,7 @@ body{
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 20fr;
   grid-template-areas: 
-  "header header"
+  "nav header"
   "nav main"
   "nav main"
   "nav main"
@@ -48,6 +45,12 @@ body{
     "main main"
   }
 }
+h1{
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: .2em;
+
+}
 
 .nav{
   background-color: darken($pop,20%);
@@ -60,18 +63,35 @@ body{
 
   ul{
     background-color: darken($pop,20%);
+    @media (max-width: $breakpoint-small) {
+      margin: 0 2em;
+    }
   }
   li{
     display:flex;
     flex-direction: column;
     gap:2em;
     justify-content: flex-start;
+    padding:1em;
+    font-weight: 800;
+    margin-top:2em;
     
-    margin-top:4em;
+    @media (max-width: $breakpoint-small) {
+      text-align: center;
+    }
   }
-  
+  li:first-child{
+    margin-top: 4em;
+    @media (max-width: $breakpoint-small) {
+      text-align: center;
+      margin-top:2em;
+    }
+  }
   #new-project{
     background-color: $rare;
+    padding:0.4em 1.5em;
+    font-weight: 500;
+    margin-bottom: 2em;
     &:hover{
       transform: scaleY(1.05);
       background-color: darken($rare, 10%);
@@ -122,17 +142,20 @@ body{
   .checkbox-container{
    display:flex;
    align-items:center;
-   padding:0.5em;
+   padding:1.5em;
    
     p{
       align-self: flex-end;
       justify-self: flex-end;
       margin-left:auto;
+      font-size:1.5em;
+
     }
 
     label{
       cursor: pointer;
       display:flex;
+      font-size: 1.5em;
      &::before{
        content: '';
        width: 1em;
@@ -315,8 +338,8 @@ body{
   left:15%;
   right:0;
   top:25%;
-  width:20rem;
-  height:20rem;
+  width:30rem;
+  height:30rem;
   padding:2rem;
   border: 2px solid black;
 
@@ -327,7 +350,22 @@ body{
     right:0;
     
     padding:1.5rem;
+    width:20rem;
+    height:20rem;
 
+  }
+  button{
+    padding:.4em 1em;
+    min-width:10em;
+    background-color: $pop;
+   
+  }
+  p{
+    text-align: center;
+    font-size: 1.5em;
+    @media (max-width: $breakpoint-small) {
+      font-size: 1em;
+    }
   }
 }
 
@@ -357,5 +395,7 @@ body{
    border: 2px solid black;
    resize:none;
    padding:0.5em;
+   background-color: $pop;
+   font-size:1.5em;
  }
 }

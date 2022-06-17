@@ -3,7 +3,7 @@ import { createHtmlListUsingArray, navBarList } from './nav';
 import { CheckBoxCreate } from './main';
 // import {checkBoxCreate} from "./main";
 
-const _parent = document.body;
+const parent = document.body;
 
 const saveData = (key, obj) => {
   localStorage.setItem(`${key}`, JSON.stringify(obj));
@@ -138,7 +138,7 @@ const newProjectCreate = () => {
 
   div.append(label, input, button);
   form.appendChild(div);
-  _parent.appendChild(form);
+  parent.appendChild(form);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

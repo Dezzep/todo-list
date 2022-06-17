@@ -13,13 +13,12 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
+          'sass-loader',
 
-          
         ],
       },
       {
@@ -27,8 +26,7 @@ module.exports = {
         type: 'asset/resource',
       },
       {
-        //perhaps I won't use custom fonts but it's here
-        //if I do.
+
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
